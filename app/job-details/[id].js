@@ -20,6 +20,8 @@ import {
 import { COLORS, icons, SIZES } from "../../constants";
 import useFetch from "../../hook/useFetch";
 
+const tabs = ["About", "Qualifications", "Responsabilites"];
+
 const JobDetails = () => {
   const params = useGlobalSearchParams();
   const router = useRouter();
@@ -29,8 +31,30 @@ const JobDetails = () => {
   });
 
   const [refreshing, setRefreshing] = useState(false);
+  const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const onRefresh = () => {};
+
+  displayTabContent = () => {
+    switch (activeTab) {
+      case "About":
+        break;
+
+      case "Qualifications":
+        return (
+          <Specifics
+            title="Qualifications"
+            points={data[0].job_highlights?.Qualifications ?? ["N/A"]}
+          />
+        );
+
+      case "Responsabilites":
+        break;
+
+      default:
+        break;
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -75,7 +99,13 @@ const JobDetails = () => {
                 location={data[0].job_country}
               />
 
-              <JobTabs />
+              <JobTabs
+                tabs={tabs}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+              />
+
+              {displayTabContent()}
             </View>
           )}
         </ScrollView>
