@@ -5,9 +5,24 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-updates"
     ],
     "name": "gopportunities",
-    "slug": "gopportunities"
+    "slug": "gopportunities",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "df37bdd7-7454-429e-870b-461224dfc52c"
+      }
+    },
+    "android": {
+      "package": "com.arielribeiro.gopportunities"
+    },
+    "ios": {
+      "bundleIdentifier": "com.arielribeiro.gopportunities"
+    }
   }
 }
